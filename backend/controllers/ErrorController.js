@@ -27,6 +27,10 @@ let devErrors = function (error, res) {
 }
 
 let prodErrors = function (error, res) {
+    if (error.name == "ValidationError") error = ValidationError(error);
+    if (error.name == "CastError") error = CastError(error);
+
+
     if (error.isOperational) {
         res.status(error.statusCode).json({
             status: error.status,
@@ -41,6 +45,14 @@ let prodErrors = function (error, res) {
     }
 }
 
+let ValidationError = function (error) {
+    message = Object.values(error.errors).map(el => el["message"]).join(". ");
+    return new CustomError(message, 400);
+}
+
+let CastError = function (error) {
+    return new CustomError(`Invalid ${error.path} value: ${error.value}`, 400);
+}
 
 module.exports = {
     asyncErrorHandler,
