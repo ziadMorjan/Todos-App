@@ -7,6 +7,7 @@ const sanitizer = require('express-mongo-sanitize');
 const xss = require('xss-clean');
 const hpp = require('hpp');
 
+const todoRoutes = require("./routes/TodoRouts");
 const defaultRoute = require('./routes/DefaultRoute');
 const { globalErrorHandler } = require('./controllers/ErrorController');
 
@@ -27,6 +28,7 @@ app.use(sanitizer());
 app.use(xss());
 app.use(hpp());
 
+app.use("/api/v1/todos", todoRoutes);
 app.use(defaultRoute);
 
 app.use(globalErrorHandler);
