@@ -57,7 +57,7 @@ let updateTodo = asyncErrorHandler(async function (req, res) {
 });
 
 let deleteTodo = asyncErrorHandler(async function (req, res) {
-    let deletedTodo = await Todo.findById(req.params.id);
+    let deletedTodo = await Todo.findByIdAndDelete(req.params.id);
 
     if (!deletedTodo)
         throw new CustomError(`There is no todo with the id: ${req.params.id}`, 404);
