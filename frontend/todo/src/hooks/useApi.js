@@ -37,7 +37,7 @@ export const useApi = (url) => {
     const update = async (body) => {
         setIsLoading(true);
         try {
-            const res = await axios.put(`${url}/${body._id}`, body); // Corrected API call to include the ID in the URL
+            const res = await axios.patch(`${url}/${body._id}`, body); // Corrected API call to include the ID in the URL
             return res?.data?.data?.todo;
         } catch (e) {
             setError(e.message);
@@ -59,5 +59,5 @@ export const useApi = (url) => {
         }
     };
 
-    return { getAll, isLoading, error, post, del, update };
+    return { url ,getAll, isLoading, error, post, del, update };
 };

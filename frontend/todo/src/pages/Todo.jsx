@@ -3,7 +3,7 @@ import { Fragment, useState } from "react";
 import { useCRUD } from "../hooks/useCRUD"; // Corrected import
 
 export const Todo = () => {
-  const { state, create, deleteOne, updateOne } = useCRUD();
+  const { state , create, deleteOne, updateOne } = useCRUD();
   const [form, setForm] = useState({ name: "", description: "", id: null }); // Added `id` for update
 
   const handleChange = (e) => {
@@ -76,10 +76,10 @@ export const Todo = () => {
           </tr>
         </thead>
         <tbody>
-          {state.map((item) => (
+          {state.map((item ,index ) => (
             <Fragment key={item._id}>
               <tr>
-                <td>{item._id}</td>
+                <td>{index+1}</td>
                 <td>{item.name}</td>
                 <td>{item.description}</td>
                 <td>{item.createdAt}</td>

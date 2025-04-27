@@ -25,7 +25,7 @@ const reducer = (state, action) => {
 
 export const useCRUD = () => {
     const { getAll, post, del, update } = useApi('http://localhost:5000/api/v1/todos');
-    const [state, dispatch] = useReducer(reducer, []);
+    const [state, dispatch ] = useReducer(reducer, []);
 
     const init = async () => {
         try {
@@ -58,7 +58,7 @@ export const useCRUD = () => {
 
     const updateOne = async (body) => {
         try {
-            const updatedTodo = await update(body); // Make sure the `body` includes `_id`
+            const updatedTodo = await update(body); 
             if (updatedTodo) {
                 dispatch({ type: ACTIONS.UPDATE, payload: updatedTodo });
             }
