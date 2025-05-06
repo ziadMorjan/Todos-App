@@ -8,5 +8,3 @@ export const ACTIONS = {
     SELECT: "select",
     FAILS: "fails",
   };
-
-  
